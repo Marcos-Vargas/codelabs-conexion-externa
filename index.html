@@ -49,7 +49,8 @@
       <google-codelab-step label="Configuración de la base de datos Oracle:" duration="0">
         <h2 is-upgraded>Inicia sesión en tu consola de Oracle como administrador</h2>
 <p>Ingresa a través del cmd de tu Windows a sqlplus como usuario administrador</p>
-<p>    sqlplus / as sysdba</p>
+<pre><code>sqlplus / as sysdba
+</code></pre>
 <h2 is-upgraded>Crea un tablespace</h2>
 <p>Primero que todo deberá crear un TABLESPACE como espacio de trabajo para los usuarios que desea que se conecten. Puede seguir el siguiente ejemplo:</p>
 <pre><code>alter session set &#34;_ORACLE_SCRIPT&#34;=true;
@@ -110,13 +111,15 @@ COMMIT;
 <p><strong>5.</strong> Una vez ingreses a tu cuenta, dirígete a <code>Getting Started</code> y en la pestaña de <code>Your Authtoken</code> copea el token personal al portapapeles</p>
 <p class="image-container"><img alt="Alt text" src="img\de6a4e40ca0a3444.png"></p>
 <p><strong>5.</strong> Ahora vuelve a tu consola de ngrok y digita el siguiente código para autenticarte. De la siguiente forma</p>
-<p>    ngrok config add-authtoken </p>
+<pre><code>ngrok config add-authtoken &lt;your-token&gt;
+</code></pre>
 <p class="image-container"><img alt="Alt text" src="img\298780d44f9afd18.png"></p>
 <p><strong>Importante</strong> si no te funciona usando la palabra clave <code>ngrok</code>, intenta con <code>ngrok.exe</code> o con <code>.\ngrok.exe</code></p>
 <h2 is-upgraded>Exponiendo el puerto a internet con ngrok</h2>
 <p><strong>1.</strong> Ahora verifica que tu Oracle DB ese ejecutándose y verifica el puerto donde está ejecutándose</p>
 <p><strong>2.</strong> Una vez determines esto ve a tu consola de Ngrok y escribe lo siguiente</p>
-<p>    ngrok tcp </p>
+<pre><code>ngrok tcp &lt;puerto-Oracle&gt;
+</code></pre>
 <ul>
 <li>1521 es el puerto donde se ejecuta Oracle DB por lo general, si es otro, coloca el número de ese puerto</li>
 </ul>
@@ -124,13 +127,15 @@ COMMIT;
 <p>Si hiciste todo bien hasta este punto deberá aparecerte una terminal con este tipo de información</p>
 <p class="image-container"><img alt="Alt text" src="img\779c7f775c4d7236.png"></p>
 <p>Copia la dirección que es similar a esta y guárdala</p>
-<p>    tcp://4.tcp.ngrok.io:12528</p>
+<pre><code>tcp://4.tcp.ngrok.io:12528
+</code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Guía del Usuario" duration="0">
-        <h2 is-upgraded>Pongámoslo a prueba: VS Code</h2>
+        <ul>
+<li><h2 is-upgraded>Pongámoslo a prueba: VS Code</h2>
 <h2 is-upgraded>Mini Resumen de Instalación y Configuración de Visual Studio Code</h2>
 <ol type="1">
 <li>Descargar la herramienta de Visual Studio Code en <a href="https://code.visualstudio.com/download" target="_blank">https://code.visualstudio.com/download</a> e instalarla</li>
@@ -138,51 +143,28 @@ COMMIT;
 <li>O entre a la pestaña de extensiones y, busque las extensiones dbclient-jdbc y MySQL de Weijan Cgen e instálelas desde la interfaz de VS Code.</li>
 </ol>
 <h2 is-upgraded>Intentando conectarnos al usuario creado</h2>
-<p>Abra el programa de Visual Studio Code y en la barra lateral izquierda de navegación busque el símbolo de base de datos</p>
-<p class="image-container"><img alt="Alt text" src="img\9f26c764e95f32a5.png"></p>
-<p>Ahora selecciona el logo de base de datos y se abrirá el explorador de conexiones activas de bases de datos. Ahora en ese explorador en la parte superior hay que darle clic en el botón de <code>+</code> para de esa forma agregar una nueva conexión</p>
-<p class="image-container"><img alt="Alt text" src="img\b0879cd57d6fa84a.png"></p>
-<p>La ventana a continuación será donde se va a ingresar los datos de conexión a la base de datos</p>
-<p class="image-container"><img alt="Alt text" src="img\780abc91fef6652e.png"></p>
-<p>Ubíquese en la pestaña de Oracle</p>
-<p>Tenga en cuenta que el host para este ejemplo es <code>4.tcp.ngrok.io</code> y el puerto con el que se va a conectar es <code>12528</code> de la siguiente forma, y llene el resto de campos de acuerdo a la configuración de la base de Datos de Oracle y darle clic en Connect y como puede verse se conectó correctamente</p>
-<p class="image-container"><img alt="Alt text" src="img\3f9867b5547cf16a.png"></p>
-<ul>
-<li>Creando una tabla desde ese usuario para comprobar que puede realizar cambios sobre la base de datos</li>
+Abra el programa de Visual Studio Code y en la barra lateral izquierda de navegación busque el símbolo de base de datos<img alt="Alt text" src="img\9f26c764e95f32a5.png">Ahora selecciona el logo de base de datos y se abrirá el explorador de conexiones activas de bases de datos. Ahora en ese explorador en la parte superior hay que darle clic en el botón de <code>+</code> para de esa forma agregar una nueva conexión<img alt="Alt text" src="img\b0879cd57d6fa84a.png">La ventana a continuación será donde se va a ingresar los datos de conexión a la base de datos<img alt="Alt text" src="img\780abc91fef6652e.png">Ubíquese en la pestaña de OracleTenga en cuenta que el host para este ejemplo es <code>4.tcp.ngrok.io</code> y el puerto con el que se va a conectar es <code>12528</code> de la siguiente forma, y llene el resto de campos de acuerdo a la configuración de la base de Datos de Oracle y darle clic en Connect y como puede verse se conectó correctamente<img alt="Alt text" src="img\3f9867b5547cf16a.png"><ul>
+<li>Creando una tabla desde ese usuario para comprobar que puede realizar cambios sobre la base de datos<img alt="Alt text" src="img\a9acedc9ad50277c.png"></li>
 </ul>
-<p class="image-container"><img alt="Alt text" src="img\a9acedc9ad50277c.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Pongámoslo a prueba con SQL Developer" duration="0">
-        <ol type="1">
+</li>
+<li><h2 is-upgraded>Pongámoslo a prueba con SQL Developer</h2>
+<ol type="1">
 <li>Descargamos el programa de SQL Developer <a href="https://www.oracle.com/database/sqldeveloper/technologies/download/" target="_blank"><strong>aqui</strong></a></li>
-<li>Una vez descargado se descomprime el archivo en una locación de tu sistema. Y lo inicias.</li>
+<li>Una vez descargado se descomprime el archivo en una locación de tu sistema. Y lo inicias.<img alt="Alt text" src="img\12c25e057364fb41.png"></li>
+<li>Abrimos el ejecutable<img alt="Alt text" src="img\2f3912fa96e187ce.png"></li>
 </ol>
-<p class="image-container"><img alt="Alt text" src="img\12c25e057364fb41.png"></p>
-<ol type="1" start="3">
-<li>Abrimos el ejecutable</li>
-</ol>
-<p class="image-container"><img alt="Alt text" src="img\2f3912fa96e187ce.png"></p>
 <h2 is-upgraded>Intentando conectarnos al usuario creado</h2>
-<ol type="1" start="4">
-<li>Dar clic en el <code>+</code> que aparece en la barra lateral izquierda para agregar una nueva conexión</li>
+<ol type="1">
+<li>Dar clic en el <code>+</code> que aparece en la barra lateral izquierda para agregar una nueva conexión<img alt="Alt text" src="img\5ac47711c73632ec.png"></li>
+<li>Aparecerá una ventanita para ingresar los datos de la nueva conexión<img alt="Alt text" src="img\86260e82f2abe80d.png"></li>
+<li>Ingrese el nombre que le quiera dar a la conexión, el nombre de usuario será el que creo previamente él en punto 1 de este tutorial. Respecto al nombre del host y el puerto a ingresar será<pre><code> 2.tcp.ngrok.io:19778
+ &lt;host&gt;:&lt;puerto&gt;
+</code></pre>
+Y el SID será &#34;<code>xe</code>&#34; por defecto y dale clic en probar para testear la conexión.<img alt="Alt text" src="img\876dae819104ee1a.png"></li>
+<li>Dale clic en conectar para establecer la conexión.<img alt="Alt text" src="img\cf46409202c171c1.png"></li>
 </ol>
-<p class="image-container"><img alt="Alt text" src="img\5ac47711c73632ec.png"></p>
-<ol type="1" start="5">
-<li>Aparecerá una ventanita para ingresar los datos de la nueva conexión</li>
-</ol>
-<p class="image-container"><img alt="Alt text" src="img\86260e82f2abe80d.png"></p>
-<ol type="1" start="6">
-<li>Ingrese el nombre que le quiera dar a la conexión, el nombre de usuario será el que creo previamente él en punto 1 de este tutorial. Respecto al nombre del host y el puerto a ingresar será</li>
-</ol>
-<p>        2.tcp.ngrok.io:19778         :     Y el SID será &#34;<code>xe</code>&#34; por defecto y dale clic en probar para testear la conexión.</p>
-<p class="image-container"><img alt="Alt text" src="img\876dae819104ee1a.png"></p>
-<ol type="1" start="7">
-<li>Dale clic en conectar para establecer la conexión.</li>
-</ol>
-<p class="image-container"><img alt="Alt text" src="img\cf46409202c171c1.png"></p>
+</li>
+</ul>
 
 
       </google-codelab-step>
