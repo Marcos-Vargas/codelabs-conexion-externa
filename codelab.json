@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2023-09-13T01:32:36-05:00",
+  "updated": "2023-09-13T02:12:13-05:00",
   "id": "oracle-connection-external",
   "duration": 0,
   "title": "Conectándose a tu Oracle DB desde otra computadora con Ngrok",
   "authors": "Marcos Esteban Vargas Avella",
   "summary": "How To Connect to database from another computer",
-  "source": "Tutoriales md//Tutorial Conexion Externa/Conexion externa.md",
+  "source": "Tutoriales md/Tutorial Conexion Externa/Conexion externa.md",
   "theme": "",
   "status": [
     "published"
