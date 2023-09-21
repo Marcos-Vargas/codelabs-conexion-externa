@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2023-09-13T02:33:26-05:00",
+  "updated": "2023-09-20T20:04:43-05:00",
   "id": "oracle-connection-external",
   "duration": 0,
   "title": "Conectándose a tu Oracle DB desde otra computadora con Ngrok",

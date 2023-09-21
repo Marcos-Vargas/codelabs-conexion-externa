@@ -67,28 +67,24 @@ COMMIT;
 <p>Una vez este creado el tablespace, puede seguir con la creación de los usuarios y darle permisos necesarios para que puedan desarrollar sus tareas. Puedes guiarte del siguiente script:</p>
 <pre><code>alter session set &#34;_ORACLE_SCRIPT&#34;=true;
 
---creacion de tablespace
-CREATE TABLESPACE CONNECTION
-DATAFILE &#39;connectionts.dbf&#39;
-SIZE 20M
-AUTOEXTEND ON NEXT 3M
-MAXSIZE 1000M;
-
 --creacion de usuario
 CREATE USER tusuario 
 IDENTIFIED BY tucontrasena 
 DEFAULT TABLESPACE CONNECTION;
+ALTER USER tusuario DEFAULT TABLESPACE CONNECTION;
 
 --agregacion de permisos a usuarios
 GRANT CREATE SESSION TO tusuario;
-
-GRANT CREATE ANY TABLE, ALTER ANY TABLE, DROP ANY TABLE, SELECT
-ANY TABLE, INSERT ANY TABLE, UPDATE ANY TABLE TO tusuario;
-
+GRANT CREATE SYNONYM to tusuario;
+GRANT CREATE PUBLIC SYNONYM to tusuario;
+GRANT CREATE TABLE TO tusuario;
+GRANT ALTER TABLE TO tusuario;
+GRANT SELECT TABLE TO tusuario;
+GRANT INSERT TABLE TO tusuario;
+GRANT UPDATE TABLE TO tusuario;
+GRANT DELETE TABLE TO tusuario;
 GRANT CREATE ANY INDEX TO tusuario;
-
 GRANT RESOURCE TO tusuario;
-
 alter user tusuario quota unlimited on CONNECTION;
 
 COMMIT;
@@ -154,6 +150,42 @@ COMMIT;
 </code></pre>
 Y el SID será &#34;<code>xe</code>&#34; por defecto y dale clic en probar para testear la conexión.<br><img alt="Alt text" src="img\876dae819104ee1a.png"><br><strong>4.</strong> Dale clic en conectar para establecer la conexión.<br><img alt="Alt text" src="img\cf46409202c171c1.png"><br></li>
 </ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Anexo: Creando tablas y dando permisos para que otros puedan tener accesos a las tablas" duration="0">
+        <h2 is-upgraded>Crea tu tabla</h2>
+<p>Estamos ahora conectados con el usuario <code>tusuario</code> y vamos a crear una tabla</p>
+<pre><code>CREATE TABLE REGISTROS (
+codigo number primary key,
+nombre varchar2(225) not null,
+apellido varchar2(225) not null
+);
+</code></pre>
+<h2 is-upgraded>Crea un sinonimo publico de tu tabla</h2>
+<pre><code>CREATE PUBLIC SYNONYM REGISTROS FOR tusuario.REGISTROS;
+</code></pre>
+<h2 is-upgraded>Indica los permisos sobre las tablas a determinados usuarios</h2>
+<p>Crea un usuario tusuario2 tal cual como se mostro en el item de creacion de usuario dentro del mismo tablespace</p>
+<pre><code>GRANT ALTER on REGISTROS TO tusuario2;
+GRANT SELECT on REGISTROS TO tusuario2;
+GRANT INSERT on REGISTROS TO tusuario2;
+GRANT UPDATE on REGISTROS TO tusuario2;
+GRANT DELETE on REGISTROS TO tusuario2;
+</code></pre>
+<h2 is-upgraded>A comprobar:</h2>
+<p>Ingresa con el usuario <code>tusuario2</code> y ejecuta las siguientes sentencias todas seguidas por <code>COMMIT;</code></p>
+<pre><code>SELECT * FROM REGISTROS;
+
+INSERT INTO REGISTROS(codigo,nombre,apellido) VALUES (1,&#39;tu_nombre&#39;,&#39;tu_apellido&#39;);
+COMMIT;
+
+UPDATE REGISTROS 
+SET nombre = &#39;tu_nombre_updated&#39;
+where id=1;
+COMMIT;
+</code></pre>
 
 
       </google-codelab-step>
